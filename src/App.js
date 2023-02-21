@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import Baby from './Baby'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App=()=>{
+    const [dad, setDad] = useState("Chang");
+    const [born, setBorn] = useState(true);
+    
+    const changeDad=()=>{
+      if(dad==="Chang"){
+        setDad("Wang")
+      }
+      else{
+        setDad("Chang")
+      }
+    }
+
+    const spawnBaby=()=>{
+      if(born===true){
+        return <Baby dad={dad}/>;
+      }
+    }
+
+    return(
+      <div>
+        {spawnBaby()}
+        <div id="talk"></div>
+        <button onClick={changeDad}>換爸爸!</button>
+        <button onClick={()=>{setBorn(!born)}}>{(born===true)?"讓他回去肚子裡":"讓他生"}</button>
+      </div>
+    );
 }
-
 export default App;
